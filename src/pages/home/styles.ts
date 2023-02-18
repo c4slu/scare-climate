@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import bg from "../../assets/bg.png";
+import bg from "../../assets/bg.jpg";
 import search from "../../assets/search.svg";
 
 export const ContainerSearch = styled.div`
-  height: 29rem;
+  border-radius: 0px 0px 40px 40px;
+  width: 100vw;
+  height: 80vh;
 
-  border-bottom-left-radius: 80px;
-  border-bottom-right-radius: 80px;
-
-  background: url(${bg}) center top no-repeat;
+  background: url(${bg}) center center no-repeat;
   background-size: cover;
+  margin-bottom: 5rem;
 `;
 
 export const InputContainer = styled.div`
@@ -37,16 +37,21 @@ export const InputContainer = styled.div`
     }
   }
   button {
+    flex: 1;
+
+    text-align: center;
+
     height: 40px;
     width: 40px;
+
+    padding-bottom: 2px;
+
     background: ${(props) => props.theme["white"]};
     color: ${(props) => props.theme["green-dark"]};
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    border-left: 1px solid #ccc;
+    border: none;
     cursor: pointer;
-    border-top: none;
-    border-bottom: none;
     &:hover {
       background: ${(props) => props.theme["green-dark"]};
       color: ${(props) => props.theme["white"]};
@@ -96,7 +101,7 @@ export const ResultContainer = styled.div`
   }
 
   display: flex;
-  height: 65vh;
+  height: 70vh;
   align-items: center;
   justify-content: center;
   left: -20px;

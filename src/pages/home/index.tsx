@@ -18,24 +18,28 @@ import {
   BsFillCloudHazeFill,
   BsFillCloudSnowFill,
   BsFillCloudDrizzleFill,
+  BsFillCloudLightningFill,
 } from "react-icons/bs";
 import { AiOutlineSearch, AiOutlineCloud } from "react-icons/ai";
 import logo from "../../assets/logo.png";
 
 import React, { useState } from "react";
 import axios from "axios";
+import { IconType } from "react-icons/lib";
 
 interface WeatherData {
   weather: {
     description: string;
+    [key: number]: string;
     main: string;
-  };
-  name: string;
+  }[];
   main: {
-    temp: number;
     humidity: number;
+    temp: number;
     clouds: number;
   };
+  name: string;
+
   clouds: {
     all: number;
   };
@@ -45,22 +49,26 @@ interface WeatherData {
 }
 
 export function Home() {
+  const [overflowY, setOverflowY] = useState("");
+
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState<WeatherData | null>(null);
-
+  let icon: any | undefined;
   if (weather?.weather[0]?.main == "Clouds") {
-    var icon = <BsFillCloudHazeFill size={100} />;
+    icon = <BsFillCloudHazeFill size={100} />;
   } else if (weather?.weather[0]?.main == "Clear") {
-    var icon = <BsFillCloudSunFill size={100} />;
+    icon = <BsFillCloudSunFill size={100} />;
   } else if (weather?.weather[0]?.main == "Snow") {
-    var icon = <BsFillCloudSnowFill size={100} />;
+    icon = <BsFillCloudSnowFill size={100} />;
   } else if (weather?.weather[0]?.main == "Mist") {
-    var icon = <BsFillCloudHaze2Fill size={100} />;
+    icon = <BsFillCloudHaze2Fill size={100} />;
   } else if (weather?.weather[0]?.main == "Thunderstorm") {
-    var icon = <BsFillCloudLightningFill size={100} />;
+    icon = <BsFillCloudLightningFill size={100} />;
   } else if (weather?.weather[0]?.main == "Drizzle") {
-    var icon = <BsFillCloudDrizzleFill size={100} />;
+    icon = <BsFillCloudDrizzleFill size={100} />;
   }
+  const humidity = weather?.main?.humidity ?? 0;
+  const clouds = weather?.clouds.all ?? 0;
 
   const search = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,26 +86,25 @@ export function Home() {
   console.log(weather?.weather[0]?.main);
 
   const icon_humidity = (
-    <BsDropletHalf
-      color={weather?.main.humidity < 70 ? "#E8544B" : "#0080CD"}
-    />
+    <BsDropletHalf color={humidity < 70 ? "#E8544B" : "#0080CD"} />
   );
 
   const icon_nebu =
-    weather?.clouds.all > 50 ? (
+    clouds > 50 ? (
       <BsFillCloudHaze2Fill color="#616867" />
     ) : (
       <BsFillCloudSunFill />
     );
 
-  let temp = weather?.main.temp;
+  let temp = weather?.main.temp ?? 0;
   let tempajust = temp?.toFixed(0);
 
   const handleClick = () => {
+    setOverflowY("none");
     // Adicione a animação de loading ao botão
 
     // Desloque a página para a área de destino usando animação
-    const minhaArea = document.querySelector("#minhaArea");
+    const minhaArea = document.querySelector("#minhaArea") ?? document.body;
     const posicao = minhaArea.getBoundingClientRect().top + window.pageYOffset;
     const deslocamento = posicao - 64; // 64 é a altura do menu de navegação
     const duracao = 500; // duração da animação em milissegundos
@@ -149,10 +156,10 @@ export function Home() {
         </InputContainer>
       </ContainerSearch>
       <ResultContainer>
-        <h1>CONDIÇÕES ATUAIS</h1>
+        <h1 id="minhaArea">CONDIÇÕES ATUAIS</h1>
         {weather && (
           <div>
-            <Desc id="minhaArea">
+            <Desc>
               <Icon>{icon}</Icon>
               <h3>{weather.name}</h3>
               <Graus>
@@ -171,7 +178,7 @@ export function Home() {
                     Umidade:{" "}
                     <span>
                       {" "}
-                      {icon_humidity} {weather?.main.humidity}%
+                      {icon_humidity} {humidity}%
                     </span>
                   </li>
                   <li>
