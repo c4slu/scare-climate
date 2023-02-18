@@ -5,11 +5,10 @@ import search from "../../assets/search.svg";
 export const ContainerSearch = styled.div`
   border-radius: 0px 0px 40px 40px;
   width: 100vw;
-  height: 80vh;
+  height: 100vh;
 
   background: url(${bg}) center center no-repeat;
   background-size: cover;
-  margin-bottom: 5rem;
 `;
 
 export const InputContainer = styled.div`
@@ -94,22 +93,25 @@ export const HeaderContainer = styled.header`
 `;
 
 export const ResultContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   h1 {
     color: ${(props) => props.theme["white"]};
     font-size: 1.5rem;
-    margin-bottom: 2rem;
+    margin: 2rem 0rem;
   }
 
-  display: flex;
-  height: 70vh;
-  align-items: center;
-  justify-content: center;
-  left: -20px;
-  flex-direction: column;
-
   div {
+    flex: 1;
     display: flex;
+    height: 100vh;
+    width: 300px;
     align-items: center;
+    justify-content: center;
+    /* left: -20px; */
+    flex-direction: column;
   }
 `;
 

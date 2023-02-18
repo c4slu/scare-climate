@@ -25,7 +25,7 @@ import logo from "../../assets/logo.png";
 
 import React, { useState } from "react";
 import axios from "axios";
-import { IconType } from "react-icons/lib";
+import { IconBaseProps, IconTree, IconType } from "react-icons/lib";
 
 interface WeatherData {
   weather: {
@@ -53,18 +53,20 @@ export function Home() {
 
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState<WeatherData | null>(null);
-  let icon: any | undefined;
-  if (weather?.weather[0]?.main == "Clouds") {
+  let icon: IconBaseProps | undefined;
+  if (weather?.weather[0].main == "Clouds") {
     icon = <BsFillCloudHazeFill size={100} />;
-  } else if (weather?.weather[0]?.main == "Clear") {
+  } else if (weather?.weather[0].main == "Clear") {
     icon = <BsFillCloudSunFill size={100} />;
-  } else if (weather?.weather[0]?.main == "Snow") {
+  } else if (weather?.weather[0].main == "Snow") {
     icon = <BsFillCloudSnowFill size={100} />;
-  } else if (weather?.weather[0]?.main == "Mist") {
+  } else if (weather?.weather[0].main == "Mist") {
     icon = <BsFillCloudHaze2Fill size={100} />;
-  } else if (weather?.weather[0]?.main == "Thunderstorm") {
+  } else if (weather?.weather[0].main == "Thunderstorm") {
     icon = <BsFillCloudLightningFill size={100} />;
-  } else if (weather?.weather[0]?.main == "Drizzle") {
+  } else if (weather?.weather[0].main == "Drizzle") {
+    icon = <BsFillCloudDrizzleFill size={100} />;
+  } else {
     icon = <BsFillCloudDrizzleFill size={100} />;
   }
   const humidity = weather?.main?.humidity ?? 0;
@@ -83,7 +85,7 @@ export function Home() {
       console.error(error);
     }
   };
-  console.log(weather?.weather[0]?.main);
+  console.log(weather?.weather[0].main);
 
   const icon_humidity = (
     <BsDropletHalf color={humidity < 70 ? "#E8544B" : "#0080CD"} />
@@ -106,7 +108,7 @@ export function Home() {
     // Desloque a página para a área de destino usando animação
     const minhaArea = document.querySelector("#minhaArea") ?? document.body;
     const posicao = minhaArea.getBoundingClientRect().top + window.pageYOffset;
-    const deslocamento = posicao - 64; // 64 é a altura do menu de navegação
+    const deslocamento = posicao + 64; // 64 é a altura do menu de navegação
     const duracao = 500; // duração da animação em milissegundos
     const inicio = performance.now();
     const animacao = requestAnimationFrame(function animarScroll(time) {
@@ -142,6 +144,7 @@ export function Home() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               list="search"
+              onSubmit={handleClick}
             />
             <datalist id="search">
               <option value="São Paulo" />
@@ -155,10 +158,10 @@ export function Home() {
           </form>
         </InputContainer>
       </ContainerSearch>
-      <ResultContainer>
-        <h1 id="minhaArea">CONDIÇÕES ATUAIS</h1>
+      <ResultContainer id="minhaArea">
         {weather && (
           <div>
+            <h1>CONDIÇÕES ATUAIS</h1>
             <Desc>
               <Icon>{icon}</Icon>
               <h3>{weather.name}</h3>
