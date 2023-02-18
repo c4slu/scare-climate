@@ -8,7 +8,7 @@ import { DefaultTheme } from "./styles/themes/defaul";
 export function App() {
   return (
     <ThemeProvider theme={DefaultTheme}>
-      <BrowserRouter>
+      <BrowserRouter basename={"process.env.PUBLIC_URL"}>
         <Router />
       </BrowserRouter>
 
