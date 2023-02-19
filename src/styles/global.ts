@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
  }
 :focus{
   outline: 0;
-  box-shadow: 0 0 0 2px ${(props) => props.theme["green-light"]};
+  box-shadow: 0 0 0 2px ${(props) => props.theme["black"]};
 }
 
  body{
@@ -25,4 +25,19 @@ export const GlobalStyle = createGlobalStyle`
   font-size: 1rem;
 
  }
+ body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: none      /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: ${(props) =>
+    props.theme["black"]};    /* color of the scroll thumb */
+  border-radius: 20px;  
+  border: 4px solid ${(props) =>
+    props.theme.black};     /* roundness of the scroll thumb */
+}
 `;

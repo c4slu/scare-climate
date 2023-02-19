@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import bg from "../../assets/bg.jpg";
 import search from "../../assets/search.svg";
 
 export const ContainerSearch = styled.div`
@@ -7,8 +6,12 @@ export const ContainerSearch = styled.div`
   width: 100vw;
   height: 100vh;
 
-  background: url(${bg}) center center no-repeat;
-  background-size: cover;
+  h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 250px;
+  }
 `;
 
 export const InputContainer = styled.div`
@@ -16,7 +19,8 @@ export const InputContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  margin-top: 10rem;
+  width: 100vw;
+  height: 10vh;
   input {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
@@ -46,13 +50,13 @@ export const InputContainer = styled.div`
     padding-bottom: 2px;
 
     background: ${(props) => props.theme["white"]};
-    color: ${(props) => props.theme["green-dark"]};
+    color: ${(props) => props.theme["black"]};
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border: none;
     cursor: pointer;
     &:hover {
-      background: ${(props) => props.theme["green-dark"]};
+      background: ${(props) => props.theme["black"]};
       color: ${(props) => props.theme["white"]};
     }
   }
@@ -96,7 +100,7 @@ export const ResultContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  height: 100vh;
   h1 {
     color: ${(props) => props.theme["white"]};
     font-size: 1.5rem;
@@ -104,13 +108,9 @@ export const ResultContainer = styled.div`
   }
 
   div {
-    flex: 1;
     display: flex;
-    height: 100vh;
-    width: 300px;
     align-items: center;
     justify-content: center;
-    /* left: -20px; */
     flex-direction: column;
   }
 `;
@@ -129,7 +129,8 @@ export const Graus = styled.div`
 export const Desc = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 30px;
+  width: 100%;
+  /* margin: 30px; */
 
   p {
     font-weight: 700;
@@ -142,21 +143,22 @@ export const Desc = styled.div`
 `;
 
 export const Info = styled.div`
-  margin-top: 20px;
+  margin-top: 50px;
 
   li {
     display: flex;
-
+    align-items: center;
     list-style-type: none;
-    width: 100%;
+    width: 17vw;
     justify-content: space-between;
     gap: 20px;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
   }
   ul {
-    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   span {
@@ -166,4 +168,21 @@ export const Info = styled.div`
 
 export const Icon = styled.div`
   margin-bottom: 30px;
+`;
+
+export const Result = styled.div`
+  display: flex;
+  padding: 2rem;
+  margin: 3rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #ccc;
+  background: linear-gradient(
+    153.43deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 85%
+  );
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 `;

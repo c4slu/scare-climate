@@ -7,6 +7,8 @@ import {
   Desc,
   Info,
   Icon,
+  Result,
+  Bg,
 } from "./styles";
 import { NavLink } from "react-router-dom";
 import { MdBrightness4 } from "react-icons/md";
@@ -136,6 +138,7 @@ export function Home() {
           </nav>
         </HeaderContainer>
 
+        <h1>Descubra o clima tempo da sua cidade</h1>
         <InputContainer>
           <form onSubmit={search}>
             <input
@@ -162,37 +165,39 @@ export function Home() {
         {weather && (
           <div>
             <h1>CONDIÇÕES ATUAIS</h1>
-            <Desc>
-              <Icon>{icon}</Icon>
-              <h3>{weather.name}</h3>
-              <Graus>
-                {tempajust} <span> °C</span>
-              </Graus>
-              <p>{weather?.weather[0].description.toUpperCase()}</p>
-              <Info>
-                <ul>
-                  <li>
-                    Velocidade do vento:{" "}
-                    <span>
-                      <BsWind /> {weather.wind.speed} MPH{" "}
-                    </span>
-                  </li>
-                  <li>
-                    Umidade:{" "}
-                    <span>
-                      {" "}
-                      {icon_humidity} {humidity}%
-                    </span>
-                  </li>
-                  <li>
-                    Nebulosidade:
-                    <span>
-                      {icon_nebu} {weather.clouds.all} %
-                    </span>
-                  </li>
-                </ul>
-              </Info>
-            </Desc>
+            <Result>
+              <Desc>
+                <Icon>{icon}</Icon>
+                <h3>{weather.name}</h3>
+                <Graus>
+                  {tempajust} <span> °C</span>
+                </Graus>
+                <p>{weather?.weather[0].description.toUpperCase()}</p>
+                <Info>
+                  <ul>
+                    <li>
+                      Velocidade do vento:{" "}
+                      <span>
+                        <BsWind /> {weather.wind.speed} MPH{" "}
+                      </span>
+                    </li>
+                    <li>
+                      Umidade:{" "}
+                      <span>
+                        {" "}
+                        {icon_humidity} {humidity}%
+                      </span>
+                    </li>
+                    <li>
+                      Nebulosidade:
+                      <span>
+                        {icon_nebu} {weather.clouds.all} %
+                      </span>
+                    </li>
+                  </ul>
+                </Info>
+              </Desc>
+            </Result>
           </div>
         )}
       </ResultContainer>
