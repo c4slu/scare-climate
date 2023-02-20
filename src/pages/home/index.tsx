@@ -58,21 +58,20 @@ export function Home() {
 
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState<WeatherData | null>(null);
-  let icon: typeof Icon | undefined;
   if (weather?.weather[0].main == "Clouds") {
-    icon = <BsFillCloudHazeFill size={100} />;
+    var icon = <BsFillCloudHazeFill size={100} />;
   } else if (weather?.weather[0].main == "Clear") {
-    icon = <BsFillCloudSunFill size={100} />;
+    var icon = <BsFillCloudSunFill size={100} />;
   } else if (weather?.weather[0].main == "Snow") {
-    icon = <BsFillCloudSnowFill size={100} />;
+    var icon = <BsFillCloudSnowFill size={100} />;
   } else if (weather?.weather[0].main == "Mist") {
-    icon = <BsFillCloudHaze2Fill size={100} />;
+    var icon = <BsFillCloudHaze2Fill size={100} />;
   } else if (weather?.weather[0].main == "Thunderstorm") {
-    icon = <BsFillCloudLightningFill size={100} />;
+    var icon = <BsFillCloudLightningFill size={100} />;
   } else if (weather?.weather[0].main == "Drizzle") {
-    icon = <BsFillCloudDrizzleFill size={100} />;
+    var icon = <BsFillCloudDrizzleFill size={100} />;
   } else {
-    icon = <BsFillCloudDrizzleFill size={100} />;
+    var icon = <BsFillCloudDrizzleFill size={100} />;
   }
   const humidity = weather?.main?.humidity ?? 0;
   const clouds = weather?.clouds.all ?? 0;
@@ -185,7 +184,7 @@ export function Home() {
               <h1>CONDIÇÕES ATUAIS</h1>
               <Result>
                 <Desc>
-                  <Icon>${icon}</Icon>
+                  <Icon>$[{icon}]</Icon>
                   <h3>{weather.name}</h3>
                   <Graus>
                     {tempajust} <span> °C</span>
