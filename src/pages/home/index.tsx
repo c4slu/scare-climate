@@ -80,7 +80,7 @@ export function Home() {
     e.preventDefault();
 
     const apiKey = "e975c4875c5de33641496feefddb7699";
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}&units=metric&lang=pt_br`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}&units=metric&lang=pt_br`;
 
     try {
       const response = await axios.get<WeatherData>(url);
