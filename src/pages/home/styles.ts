@@ -1,5 +1,79 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import search from "../../assets/search.svg";
+
+// export const Blur = styled.div`
+//   position: absolute;
+//   width: 832px;
+//   height: 300px;
+//   left: -391px;
+//   top: 0px;
+
+//   background: radial-gradient(
+//     50% 50% at 47.42% 57.27%,
+//     rgba(167, 89, 255, 0.15) 0%,
+//     rgba(165, 86, 255, 0) 100%
+//   );
+
+//   z-index: -20;
+// `;
+
+export const AniEntrada = keyframes`
+from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+export const AniEntradaLeft = keyframes`
+  from {transform: translateX(550px);}
+  to {transform: translateX(0px);}
+`;
+
+const intro = keyframes`
+  0%{
+    opacity: 0;
+    transform: translateY(40px)
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0)
+  }
+
+`;
+const finger = keyframes`
+	0%{
+    opacity: 1
+	}100%{
+    opacity: 0;
+    transform: translateY(20px)
+	}
+`;
+
+export const Mouse = styled.div`
+  position: absolute;
+  width: 22px;
+  height: 48px;
+  bottom: 40px;
+  left: 50%;
+  margin-left: -12px;
+  border-radius: 15px;
+  border: 2px solid #888;
+  animation: ${intro} 1s;
+`;
+
+export const Scroll = styled.div`
+  display: block;
+  width: 3px;
+  height: 3px;
+  margin: 6px auto;
+  border-radius: 4px;
+  background: #888;
+  animation: ${finger} 1s infinite;
+`;
 
 export const ContainerSearch = styled.div`
   border-radius: 0px 0px 40px 40px;
@@ -10,27 +84,60 @@ export const ContainerSearch = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 250px;
+    width: 399px;
+    height: 136px;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 68px;
+
+    background: linear-gradient(180deg, #8176af 0%, #c0b7e8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    animation: ${AniEntrada} 1s ease-in-out forwards;
+  }
+
+  h6 {
+    width: 409px;
+    height: 80px;
+
+    /* Headline/H6 */
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #ffffff;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+
+    animation: ${AniEntrada} 1.5s ease-in-out forwards;
   }
 `;
 
 export const InputContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 0px 0 20px 90px;
 
-  width: 100vw;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+
   height: 10vh;
   input {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    width: 660px;
+    width: 416px;
     height: 40px;
 
     padding-left: 3rem;
 
     background: url(${search}) no-repeat left center;
-    background-size: 04%;
+    background-size: 6%;
     background-position: 15px 50%;
     background-color: white;
 
@@ -46,9 +153,6 @@ export const InputContainer = styled.div`
 
     height: 40px;
     width: 40px;
-
-    padding-bottom: 2px;
-
     background: ${(props) => props.theme["white"]};
     color: ${(props) => props.theme["black"]};
     border-top-right-radius: 20px;
@@ -56,7 +160,7 @@ export const InputContainer = styled.div`
     border: none;
     cursor: pointer;
     &:hover {
-      background: ${(props) => props.theme["black"]};
+      background: ${(props) => props.theme["green-medium"]};
       color: ${(props) => props.theme["white"]};
     }
   }
@@ -67,14 +171,17 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
 
+  h1 {
+  }
+
   nav {
     display: flex;
     gap: 0.5rem;
-    margin: 30px;
+    margin: 30px 90px;
   }
 
   img {
-    margin: 30px;
+    margin: 30px 90px;
   }
 
   a {
@@ -101,8 +208,12 @@ export const ResultContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+
   h1 {
-    color: ${(props) => props.theme["white"]};
+    background: linear-gradient(180deg, #8176af 0%, #c0b7e8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-size: 1.5rem;
     margin: 2rem 0rem;
   }
@@ -185,4 +296,26 @@ export const Result = styled.div`
   );
   border: 0.5px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
+  animation: ${intro} 1s;
+  transition: all 0.65s ease;
+
+  &:hover {
+    box-shadow: 0 40px 130px rgba(0, 0, 0, 0.2);
+    -webkit-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+  }
+`;
+
+export const DescContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  div {
+  }
+  height: 308px;
+  margin: 50px 90px 20px 90px;
+
+  img {
+    height: 100%;
+    animation: ${AniEntradaLeft} 1s ease-in-out forwards;
+  }
 `;

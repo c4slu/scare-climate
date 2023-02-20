@@ -8,7 +8,9 @@ import {
   Info,
   Icon,
   Result,
-  Bg,
+  DescContainer,
+  Mouse,
+  Scroll,
 } from "./styles";
 import { NavLink } from "react-router-dom";
 import { MdBrightness4 } from "react-icons/md";
@@ -24,10 +26,11 @@ import {
 } from "react-icons/bs";
 import { AiOutlineSearch, AiOutlineCloud } from "react-icons/ai";
 import logo from "../../assets/logo.png";
+import snow from "../../assets/img_snow.png";
 
 import React, { useState } from "react";
 import axios from "axios";
-import { IconBaseProps, IconTree, IconType } from "react-icons/lib";
+import { IconBaseProps, IconContext } from "react-icons/lib";
 
 interface WeatherData {
   weather: {
@@ -51,11 +54,11 @@ interface WeatherData {
 }
 
 export function Home() {
-  const [overflowY, setOverflowY] = useState("");
+  const [mostrarConteudo, setMostrarConteudo] = useState(false);
 
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState<WeatherData | null>(null);
-  let icon: IconBaseProps | undefined;
+  let icon: typeof Icon | undefined;
   if (weather?.weather[0].main == "Clouds") {
     icon = <BsFillCloudHazeFill size={100} />;
   } else if (weather?.weather[0].main == "Clear") {
@@ -104,14 +107,14 @@ export function Home() {
   let tempajust = temp?.toFixed(0);
 
   const handleClick = () => {
-    setOverflowY("none");
+    setMostrarConteudo(true);
     // Adicione a animação de loading ao botão
 
     // Desloque a página para a área de destino usando animação
     const minhaArea = document.querySelector("#minhaArea") ?? document.body;
     const posicao = minhaArea.getBoundingClientRect().top + window.pageYOffset;
     const deslocamento = posicao + 64; // 64 é a altura do menu de navegação
-    const duracao = 500; // duração da animação em milissegundos
+    const duracao = 800; // duração da animação em milissegundos
     const inicio = performance.now();
     const animacao = requestAnimationFrame(function animarScroll(time) {
       const tempoPassado = time - inicio;
@@ -124,10 +127,11 @@ export function Home() {
         requestAnimationFrame(animarScroll);
       }
     });
+    setMostrarConteudo(true);
   };
 
   return (
-    <div>
+    <div style={{}}>
       <ContainerSearch>
         <HeaderContainer>
           <img src={logo} alt="" />
@@ -138,7 +142,17 @@ export function Home() {
           </nav>
         </HeaderContainer>
 
-        <h1>Descubra o clima tempo da sua cidade</h1>
+        <DescContainer>
+          <div>
+            <h1>Não seja pego desprevenido</h1>
+            <h6>
+              Fique por dentro das condições climáticas em tempo real com nosso
+              site de previsão do tempo confiável e preciso
+            </h6>
+          </div>
+          <img src={snow} alt="" />
+        </DescContainer>
+
         <InputContainer>
           <form onSubmit={search}>
             <input
@@ -161,46 +175,52 @@ export function Home() {
           </form>
         </InputContainer>
       </ContainerSearch>
-      <ResultContainer id="minhaArea">
-        {weather && (
-          <div>
-            <h1>CONDIÇÕES ATUAIS</h1>
-            <Result>
-              <Desc>
-                <Icon>{icon}</Icon>
-                <h3>{weather.name}</h3>
-                <Graus>
-                  {tempajust} <span> °C</span>
-                </Graus>
-                <p>{weather?.weather[0].description.toUpperCase()}</p>
-                <Info>
-                  <ul>
-                    <li>
-                      Velocidade do vento:{" "}
-                      <span>
-                        <BsWind /> {weather.wind.speed} MPH{" "}
-                      </span>
-                    </li>
-                    <li>
-                      Umidade:{" "}
-                      <span>
-                        {" "}
-                        {icon_humidity} {humidity}%
-                      </span>
-                    </li>
-                    <li>
-                      Nebulosidade:
-                      <span>
-                        {icon_nebu} {weather.clouds.all} %
-                      </span>
-                    </li>
-                  </ul>
-                </Info>
-              </Desc>
-            </Result>
-          </div>
-        )}
-      </ResultContainer>
+      {mostrarConteudo && (
+        <ResultContainer id="minhaArea">
+          <Mouse>
+            <Scroll></Scroll>
+          </Mouse>
+          {weather && (
+            <div>
+              <h1>CONDIÇÕES ATUAIS</h1>
+              <Result>
+                <Desc>
+                  <Icon>${icon}</Icon>
+                  <h3>{weather.name}</h3>
+                  <Graus>
+                    {tempajust} <span> °C</span>
+                  </Graus>
+                  <p>{weather?.weather[0].description.toUpperCase()}</p>
+                  <Info>
+                    <ul>
+                      <li>
+                        Velocidade do vento:{" "}
+                        <span>
+                          <BsWind /> {weather.wind.speed} MPH{" "}
+                        </span>
+                      </li>
+                      <li>
+                        Umidade:{" "}
+                        <span>
+                          {" "}
+                          {icon_humidity} {humidity}%
+                        </span>
+                      </li>
+                      <li>
+                        Nebulosidade:
+                        <span>
+                          {icon_nebu} {weather.clouds.all} %
+                        </span>
+                      </li>
+                    </ul>
+                  </Info>
+                </Desc>
+              </Result>
+            </div>
+          )}
+        </ResultContainer>
+      )}
+      {/* <Blur></Blur> */}
     </div>
   );
 }
