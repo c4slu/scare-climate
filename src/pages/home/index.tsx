@@ -184,7 +184,7 @@ export function Home() {
               <h1>CONDIÇÕES ATUAIS</h1>
               <Result>
                 <Desc>
-                  <Icon>$[{icon}]</Icon>
+                  <Icon>{icon}</Icon>
                   <h3>{weather.name}</h3>
                   <Graus>
                     {tempajust} <span> °C</span>
