@@ -1,6 +1,5 @@
 import {
   ContainerSearch,
-  HeaderContainer,
   InputContainer,
   ResultContainer,
   Graus,
@@ -12,8 +11,6 @@ import {
   Mouse,
   Scroll,
 } from "./styles";
-import { NavLink } from "react-router-dom";
-import { MdBrightness4 } from "react-icons/md";
 import {
   BsDropletHalf,
   BsFillCloudHaze2Fill,
@@ -24,14 +21,11 @@ import {
   BsFillCloudDrizzleFill,
   BsFillCloudLightningFill,
 } from "react-icons/bs";
-import { AiOutlineSearch, AiOutlineCloud } from "react-icons/ai";
-import logo from "../../assets/logo.png";
+import { AiOutlineSearch } from "react-icons/ai";
 import snow from "../../assets/img_snow.png";
 
 import React, { useState } from "react";
 import axios from "axios";
-
-import { lightTheme, darkTheme } from "../../styles/themes/theme";
 
 interface WeatherData {
   weather: {
