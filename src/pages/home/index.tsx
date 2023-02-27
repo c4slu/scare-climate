@@ -30,7 +30,8 @@ import snow from "../../assets/img_snow.png";
 
 import React, { useState } from "react";
 import axios from "axios";
-import { IconBaseProps, IconContext } from "react-icons/lib";
+
+import { lightTheme, darkTheme } from "../../styles/themes/theme";
 
 interface WeatherData {
   weather: {
@@ -129,17 +130,18 @@ export function Home() {
     setMostrarConteudo(true);
   };
 
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
   return (
-    <div style={{}}>
+    <div>
       <ContainerSearch>
-        <HeaderContainer>
+        {/* <HeaderContainer>
           <img src={logo} alt="" />
-          <nav>
-            <NavLink to="/">
-              <MdBrightness4 size={24} />
-            </NavLink>
-          </nav>
-        </HeaderContainer>
+        </HeaderContainer> */}
 
         <DescContainer>
           <div>

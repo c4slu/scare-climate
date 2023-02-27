@@ -78,7 +78,7 @@ export const Scroll = styled.div`
 export const ContainerSearch = styled.div`
   border-radius: 0px 0px 40px 40px;
   width: 100vw;
-  height: 100vh;
+  height: 75vh;
 
   h1 {
     display: flex;
@@ -90,7 +90,7 @@ export const ContainerSearch = styled.div`
     font-size: 56px;
     line-height: 68px;
 
-    background: linear-gradient(180deg, #8176af 0%, #c0b7e8 100%);
+    background: ${(props) => props.theme.gradient};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -110,7 +110,7 @@ export const ContainerSearch = styled.div`
     font-size: 20px;
     line-height: 24px;
 
-    color: #ffffff;
+    color: ${(props) => props.theme.white};
 
     font-family: "Inter";
     font-style: normal;
@@ -170,23 +170,23 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  h1 {
-  }
+  transition: all 0.5s linear;
 
   nav {
     display: flex;
     gap: 0.5rem;
-    margin: 30px 90px;
+    margin: 30px 50px;
   }
 
   img {
     margin: 30px 90px;
+    filter: ${(props) => props.theme.filter};
   }
 
   a {
     width: 3rem;
-    height: 3rem;
+    height: 2rem;
+    margin: 10px 50px;
 
     display: flex;
     justify-content: center;
@@ -210,7 +210,7 @@ export const ResultContainer = styled.div`
   height: 100vh;
 
   h1 {
-    background: linear-gradient(180deg, #8176af 0%, #c0b7e8 100%);
+    background: ${(props) => props.theme.gradient};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

@@ -7,16 +7,17 @@ export const GlobalStyle = createGlobalStyle`
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
+
 }
 :focus{
   outline: 0;
-  box-shadow: 0 0 0 2px ${(props) => props.theme["black"]};
+  box-shadow: 0 0 0 2px ${(props) => props.theme["bg-black"]}
 }
-
 body{
-  background: ${(props) => props.theme.black};
+  background: ${(props) => props.theme["bg-black"]};
   color: ${(props) => props.theme.white};
   -webkit-font-smoothing: antialiased;
+  transition: all 0.5s linear; 
   
   
 }
@@ -29,7 +30,8 @@ body, input, textarea, button {
 }
 body::-webkit-scrollbar {
 
-  width: 12px;               /* width of the entire scrollbar */
+  width: 12px;
+  transition: all 0.5s linear;                /* width of the entire scrollbar */
 }
 
 body::-webkit-scrollbar-track {
