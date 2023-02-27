@@ -1,4 +1,4 @@
-# Scare Climate
+<h1>Scare Climate </h1>
 
 ## ![GITHUB](../src/assets/github.png)
 
