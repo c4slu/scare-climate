@@ -124,12 +124,6 @@ export function Home() {
     setMostrarConteudo(true);
   };
 
-  const [theme, setTheme] = useState("light");
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
   return (
     <div>
       <ContainerSearch>
